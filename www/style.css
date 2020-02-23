@@ -1,0 +1,31 @@
+.bg-aqua-active {
+  background-color : #db5400 !important;
+}
+
+.bg-black {
+  background-color : #b12000 !important;
+}
+
+.bg-blue {
+  background-color : #f18407 !important;
+}
+
+.bg-purple {
+  background-color : #f5a800 !important;
+}
+
+.skin-green .main-header .navbar {
+  background-color : #fcd238 !important;
+}
+
+.skin-green .main-header .logo:hover {
+  background-color : #fcd238 !important;
+}
+
+.skin-green .main-header .logo {
+  background-color : #ecc533 !important;
+}
+
+.skin-green .sidebar-menu > li.active > a, .skin-green .sidebar-menu > li:hover > a {
+  border-left-color: #d41f1f !important;
+}

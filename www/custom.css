@@ -1,0 +1,41 @@
+.content-wrapper{overflow:auto; repeat;}
+
+.box-header .box-title, .box-header>.fa, .box-header>.glyphicon, .box-header>.ion{font-size: 14px;}
+.main-header .logo { font-size: 22px; }
+.btn{font-size:13px;}
+
+h4.modal-title{font-weight:bold;}
+h3{ padding-top:2px;padding-bottom:5px;margin-bottom:20px;border-bottom:2px;}
+
+hr{margin-bottom:10px !important; margin-top:0px !important;}
+
+.selectize-dropdown-content {max-height: 400px; }
+.boxtitle{width:100%;padding-top:2px;padding-bottom:5px;margin-bottom:20px;border-bottom:2px font-weight:bold;}
+.popup_boxtitle{width:100%;font-size: 20px; padding-top:2px;padding-bottom:5px;margin-bottom:20px;border-bottom:1px; font-weight:bold;}
+
+.modal-footer{display:none !important;}
+
+.modebar{display: none !important;}
+
+.navbar-default {
+    background-color: darkslategrey;
+    border-color: white;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    color: seagreen;
+    background-color: white;
+}
+
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+    color: white;
+    background-color: seagreen;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: white;
+}
+
+.skin-green .sidebar-menu>li.active>a {
+    border-left-color: goldenrod;
+}
