@@ -158,16 +158,14 @@ observeEvent(input$ts_select,{
     sdf %>% select(Crossing:`Sliding.Tackle`)  %>% 
       rename_all(funs(gsub("[[:punct:]]", " ", .))) %>% 
       gather(Skill, Exp, Crossing:`Sliding Tackle`) %>% 
-      ggplot(aes(reorder(Skill, Exp), Exp, fill = if_else(Exp < 50, "orangered", 
-                                                            if_else(Exp <60, "orange",
-                                                                    if_else(Exp < 70, "goldenrod1", 
-                                                                            if_else(Exp <80, "palegreen4","forestgreen"))))))+
-        geom_col()+
-        coord_flip()+
-        theme_minimal()+
-        scale_fill_viridis_d(option = "E")+
-        labs(x = NULL, y = "Ability")+
-        theme(legend.position='none')
+      ggplot(aes(reorder(Skill, Exp), Exp, fill = Exp))+
+      geom_col()+
+      coord_flip()+
+      theme_minimal()+
+      labs(x = NULL, y = "Ability")+
+      theme(legend.position='none')+
+      scale_fill_gradient(low = "khaki", high = "seagreen")
+      
     
     
   })
