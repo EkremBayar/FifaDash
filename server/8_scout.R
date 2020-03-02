@@ -81,10 +81,22 @@ observeEvent(input$ts_select,{
     
     if(is.null(sdf) | nrow(sdf) == 0) return(NULL)
     
-    images <- sdf %>% pull(Photo)
+    
     names <- sdf %>% pull(Name.Pos)
     clubs <- sdf %>% pull(Club)
     logo <- sdf %>% pull(Club.Logo)
+    # For unknown players images
+    images <- sdf %>% pull(Photo)
+    unknown <- httr::GET(images)
+    
+    if(unknown$status_code == 200){
+      
+      images <- images
+      
+    }else{
+      
+      images <- "unknown.png"
+    }
     
     # Box Profile mı yoksa widgetUserBox mı?
     
@@ -335,7 +347,7 @@ observeEvent(input$ts_select,{
       
       slist <- slist %>% select(Crossing:GK.Reflexes) %>% 
         rename_all(funs(gsub("[[:punct:]]", " ", .))) %>% 
-        gather(Skill, Exp, Crossing:GK.Reflexes) %>% arrange(-Exp) %>% tail(5) 
+        gather(Skill, Exp, Crossing:`GK Reflexes`) %>% arrange(-Exp) %>% tail(5) 
       
     }else{
       
@@ -929,7 +941,13 @@ observeEvent(input$sell,{
   if(!input$text %in% (data %>% pull(Name) %>% as.character)){
     sendSweetAlert(session = session, type = "warning", title = "You don't have this player!", 
                    closeOnClickOutside = FALSE)
-    }
+  }
+  
+  if(str_length(input$text) == 0){
+    
+    sendSweetAlert(session = session, type = "warning", title = "Please enter a valid player name!", 
+                   closeOnClickOutside = FALSE)
+  }
   
   
   team <- data %>% filter(!Name %in% input$text)
