@@ -475,7 +475,17 @@ imgplayer <- function(df){
   if(is.null(df)) return(images)
   
   images <- df %>% pull(Photo)
-  images <- tags$img(src= images, width = 70, height = 70)
+  unknown <- httr::GET(images)
+  
+  if(unknown$status_code == 200){
+    
+    images <- tags$img(src= images, width = 70, height = 70)
+    
+  }else{
+    
+    images <- tags$img(src= "unknown.png", width = 70, height = 70)
+  }
+  
 
 }
 
