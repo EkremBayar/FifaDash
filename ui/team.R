@@ -79,8 +79,8 @@ tabItem(
                                     
                                     tabPanel("Set Piece Goal", 
                                              br(),
-                                             column(width = 5, offset = 1, h4("Free Kick Takers"), withSpinner(tableOutput("tt_spgoal1"))),
-                                             column(width = 5, h4("Penalty Takers"), withSpinner(tableOutput("tt_spgoal2")))
+                                             column(width = 6, h4("Free Kick Takers"), withSpinner(tableOutput("tt_spgoal1"))),
+                                             column(width = 6, h4("Penalty Takers"), withSpinner(tableOutput("tt_spgoal2")))
                                     ),
                                     
                                     tabPanel("BMI", 
