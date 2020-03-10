@@ -171,9 +171,13 @@ observeEvent(input$tl_select, {
         theme(axis.line.y = element_line(colour = "darkslategray"),
               axis.ticks.x = element_line(colour = "darkslategray"))
       
-      if(rvLeague$League %in% c("Bundesliga", "Serie A", "Ligue 1")){
+      if(rvLeague$League %in% c("Bundesliga", "Serie A")){
       
-        p+scale_y_continuous(labels = c("€0", "€200M", "€400M", "€600M", "")) # Bundesliga & Serie A & Ligue 1
+        p+scale_y_continuous(labels = c("€0", "€200M", "€400M", "€600M", "")) # Bundesliga & Serie A 
+        
+      }else if(rvLeague$League == "Ligue 1"){ 
+        
+        p+scale_y_continuous(labels = c("€0", "€200M", "€400M", "€600M")) # Ligue 1
         
       }else if(rvLeague$League == "La Liga"){
         
