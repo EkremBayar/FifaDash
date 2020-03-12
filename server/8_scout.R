@@ -752,14 +752,26 @@ observeEvent(input$cr_select,{
   
   output$cr_htest <- renderPlot({
     
-    if(xht$p.value < 0.05 | yht$p.value < 0.05){
+    if(xht$p.value < 0.05 ){
       
-      messageHTest <- "The p-value of the test is less than 0.05."
-      messageSTest <- "There is significantly difference between right foot and left foot values."
+      messageHTestx <- "The p-value of the test is less than 0.05."
+      messageSTestx <- "There is significantly difference between right foot and left foot values."
+     
+    }else{
+      messageHTestx <- "The p-value of the test is not less than 0.05."
+      messageSTestx <- "There is no significantly difference between right foot and left foot values."
+    }
+    
+    if(yht$p.value < 0.05){
+      
+      messageHTesty <- "The p-value of the test is less than 0.05."
+      messageSTesty <- "There is significantly difference between right foot and left foot values."
       
     }else{
-      messageHTest <- "The p-value of the test is not less than 0.05."
-      messageSTest <- "There is no significantly difference between right foot and left foot values."
+
+      messageHTesty <- "The p-value of the test is not less than 0.05."
+      messageSTesty <- "There is no significantly difference between right foot and left foot values."
+      
     }
     
     
@@ -772,8 +784,8 @@ observeEvent(input$cr_select,{
                    ylim(30,100)+
                    labs(x = "Preferred Foot",
                         y = rvCor$X,
-                        title = messageHTest,
-                        subtitle = messageSTest,
+                        title = messageHTestx,
+                        subtitle = messageSTestx,
                         caption = paste0("p Value: ", round(xht$p.value, digits = 3))),
                  
                  ggplot(corp, aes(x = Preferred.Foot, y = !!rlang::parse_expr(rvCor$Y), fill = Preferred.Foot))+
@@ -783,8 +795,8 @@ observeEvent(input$cr_select,{
                    ylim(30,100)+
                    labs(x = "Preferred Foot",
                         y = rvCor$Y,
-                        title = messageHTest,
-                        subtitle = messageSTest,
+                        title = messageHTesty,
+                        subtitle = messageSTesty,
                         caption = paste0("p Value: ", round(yht$p.value, digits = 3)))
     )
     
