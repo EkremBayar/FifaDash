@@ -204,9 +204,9 @@ observeEvent(input$tl_select, {
     }else if(input$comp_league == "Position" && input$comp_graph == "Bar"){
       
       p <- rv$df %>%
-        filter(League == "Eredivisie") %>% 
+        filter(League == rvLeague$League) %>% 
         group_by(Class) %>% 
-        summarise(Total.Value = sum(Values)) %>% 
+        summarise(Total.Value = sum(as.numeric(Values))) %>% 
         ggplot(aes(reorder(Class, Total.Value), Total.Value, fill = Total.Value))+
         geom_col(show.legend = FALSE)+
         coord_flip()+
@@ -216,7 +216,7 @@ observeEvent(input$tl_select, {
         theme(axis.line.y = element_line(colour = "darkslategray"),
               axis.ticks.x = element_line(colour = "darkslategray"))
       
-      if(rvLeague$League %in% c("Bundesliga", "Serie A", "Ligue 1")){
+      if(rvLeague$League %in% c("Bundesliga", "Serie A")){
         
         p+scale_y_continuous(labels = c("€0", "€500M", "€1B", "€1.5B", "")) # Bundesliga % Serie A
         
@@ -238,11 +238,11 @@ observeEvent(input$tl_select, {
           
       }else if(rvLeague$League == "Premier League"){
         
-        p+scale_y_continuous(labels = c("€0", "€1.4B", "€2B", "")) # Premier League
+        p+scale_y_continuous(labels = c("€0", "€1.4B", "€2B", "€2.5B")) # Premier League
         
       }else if(rvLeague$League == "Ligue 1"){
         
-        scale_y_continuous(labels = c("€0", "€500M", "€1B", "")) # Ligue 1
+        p+scale_y_continuous(labels = c("€0", "€500M", "€1B", "€1.5B")) # Ligue 1
         
       }else{return(NULL)}
       
