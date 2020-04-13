@@ -186,76 +186,76 @@ best_overall <- function(df, class = c("Goal Keeper", "Defender", "Midfielder", 
   suppressWarnings(widgetUserBox(
     title = tags$p(names[1], style = "font-size: 60%;"),
     color = "purple",
-    subtitle = div(tags$p(clubs[1], style = "font-size: 80%;"), tags$img(src = logo[1]), overall[1]),
+    subtitle = div(tags$p(clubs[1], style = "font-size: 80%;"), tags$img(src = notfound(logo[1], type = "club")), overall[1]),
     type = 2,
     width = 3,
-    src = images[1],
+    src = notfound(images[1], type = "player"),
     collapsible = FALSE,
     closable = FALSE,
     
     footer = productList(
       productListItem(
-        src = images[2], 
+        src = notfound(images[2], type = "player"), 
         productTitle = names[2], 
         productPrice = overall[2], 
         priceColor = "success",
-        tags$img(src = logo[2]),clubs[2]
+        tags$img(src = notfound(logo[2], type = "club")),clubs[2]
       ),
       productListItem(
-        src = images[3], 
+        src = notfound(images[3], type = "player"), 
         productTitle = names[3], 
         productPrice = overall[3], 
         priceColor = "success",
-        tags$img(src = logo[3]),clubs[3]
+        tags$img(src = notfound(logo[3], type = "club")),clubs[3]
       ),
       productListItem(
-        src = images[4], 
+        src = notfound(images[4], type = "player"), 
         productTitle = names[4], 
         productPrice = overall[4], 
         priceColor = "success",
-        tags$img(src = logo[4]), clubs[4]
+        tags$img(src = notfound(logo[4], type = "club")), clubs[4]
       ),
       productListItem(
-        src = images[5], 
+        src = notfound(images[5], type = "player"), 
         productTitle = names[5], 
         productPrice = overall[5], 
         priceColor = "success",
-        tags$img(src = logo[5]), clubs[5]
+        tags$img(src = notfound(logo[5], type = "club")), clubs[5]
       ),
       productListItem(
-        src = images[6], 
+        src = notfound(images[6], type = "player"), 
         productTitle = names[6], 
         productPrice = overall[6], 
         priceColor = "success",
-        tags$img(src = logo[6]), clubs[6]
+        tags$img(src = notfound(logo[6], type = "club")), clubs[6]
       ),
       productListItem(
-        src = images[7], 
+        src = notfound(images[7], type = "player"), 
         productTitle = names[7], 
         productPrice = overall[7], 
         priceColor = "success",
-        tags$img(src = logo[7]),clubs[7]
+        tags$img(src = notfound(logo[7], type = "club")),clubs[7]
       ),
       productListItem(
-        src = images[8], 
+        src = notfound(images[8], type = "player"), 
         productTitle = names[8], 
         productPrice = overall[8], 
         priceColor = "success",
-        tags$img(src = logo[8]), clubs[8]
+        tags$img(src = notfound(logo[8], type = "club")), clubs[8]
       ),
       productListItem(
-        src = images[9], 
+        src = notfound(images[9], type = "player"), 
         productTitle = names[9], 
         productPrice = overall[9], 
         priceColor = "success",
-        tags$img(src = logo[9]), clubs[9]
+        tags$img(src = notfound(logo[9], type = "club")), clubs[9]
       ),
       productListItem(
-        src = images[10], 
+        src = notfound(images[10], type = "player"), 
         productTitle = names[10], 
         productPrice = overall[10], 
         priceColor = "success",
-        tags$img(src = logo[10]), clubs[10]
+        tags$img(src = notfound(logo[10], type = "club")), clubs[10]
       )
       
     )
@@ -484,6 +484,7 @@ imgplayer <- function(df){
   }else{
     
     images <- tags$img(src= "unknown.png", width = 70, height = 70)
+    
   }
   
 
@@ -541,4 +542,37 @@ facetReactiveLine <- function(df, player, color_variable, fill_strip){
 }
   
 
+
+
+
+
+# 10. 404 Not Found URL Problems ------------------------------------------
+
+notfound <- function(url, type = c("player", "club")){
+  
+  if(is.null(url)) return(NULL)
+  if(missing("url")) return(NULL)
+  
+  unknown <- httr::GET(url)
+  
+  if(unknown$status_code == 200){
+    
+    images 
+    
+  }else if(unknown$status_code != 200){
+    
+    if(type == "player"){
+      images <- "unknown.png"
+    }else{
+      return(NULL)
+    }
+
+  }else{
+    return(NULL)
+  }
+  
+  return(images)
+  
+}
+  
 
